@@ -1,0 +1,43 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    padding: 20px;
+}
+
+.book-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.book {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    padding: 15px;
+    transition: transform 0.2s;
+}
+
+.book:hover {
+    transform: scale(1.03);
+}
+
+.book-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.book-author {
+    font-size: 14px;
+    color: #555;
+}
+
+.book-pages {
+    font-size: 13px;
+    color: #333;
+    margin-top: 10px;
+}
