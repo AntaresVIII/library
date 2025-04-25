@@ -66,3 +66,8 @@ body {
     max-width: 400px;
     background-color: rgb(0, 158, 119);
 }
+.book-delete {
+    font-size: 14px;
+    color: #6e0101;
+    margin-top: 8px;
+}
