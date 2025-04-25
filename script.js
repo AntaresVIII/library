@@ -1,7 +1,7 @@
 const bookList = document.getElementById('book-list');
 const addBook = document.getElementById('add');
 const bookForm = document.getElementById('form');
-const createBook = document.getElementById
+const createBook = document.getElementById('newBook');
 
 const myLibrary = [];
 
@@ -10,24 +10,12 @@ function Book(title, author, pages, read) {
     this.author = author;
     this.pages = pages;
     this.read = read;
-}
+};
 
-function addBookToLibrary() {
-    addBook.addEventListener('click', function(event) {
-        event.preventDefault();
+function updateList() {
+    if (bookList.childElementCount > 0) { bookList.innerHTML = ""; }; // Prevents list from duplicating all books already being displayed.
 
-        const title = bookForm.title.value;
-        const author = bookForm.author.value;
-        const pages = bookForm.pages.value;
-        const read = bookForm.pages.value;
-
-        const createBook = new Book(title, author, pages, read);
-        myLibrary.push(Book);
-        console.log(myLibrary);
-    });
-}
-
-myLibrary.forEach(book => {
+    myLibrary.forEach(book => {
     const bookCard = document.createElement('div');
     bookCard.classList.add('book');
 
@@ -39,7 +27,8 @@ myLibrary.forEach(book => {
     `;
 
     bookList.appendChild(bookCard);
-});
+    })
+};
 
 addBook.addEventListener('click', () => {
     if (bookForm.style.display === 'none' || bookForm.style.display === '') {
@@ -54,3 +43,21 @@ addBook.addEventListener('click', () => {
 
     }
 });
+
+createBook.addEventListener('click', (event) => {
+    event.preventDefault();
+
+    const title = bookForm.title.value;
+    const author = bookForm.author.value;
+    const pages = bookForm.pages.value;
+    const read = bookForm.read.checked ? "I have read it." : "Not read.";
+    
+    if (title != 0 && author != 0 && pages != 0) {  // Checks whether any of the fields is left empty and prevents from posting. 
+    const newBook = new Book(title, author, pages, read);
+    myLibrary.push(newBook);
+    updateList();
+    }
+    else ( alert("You need to fill up the entire form!") );
+
+});
+
