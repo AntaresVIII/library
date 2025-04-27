@@ -1,8 +1,23 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #a3a3a3;
-    padding: 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background: linear-gradient(153deg, rgb(19, 61, 78) 0%, rgb(124, 114, 148) 100%);
+    display: flex;
+    flex-direction: column;
     color: rgb(255, 255, 255);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.content {
+    flex: 1;
+    padding-bottom: 0;
+    padding: 20px;
 }
 
 .book-list {
@@ -10,17 +25,19 @@ body {
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    
 }
 
 .book {
-    background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(153deg, rgb(223, 223, 223) 0%, rgb(145, 145, 145) 100%);
+    border: 1px solid #000000;
+    border-radius: 15px;
+    box-shadow: 7px 7px 5px rgba(0, 0, 0, 100);
     width: 250px;
-    padding: 15px;
+    padding: 7px;
     transition: transform 0.2s;
+    color: black;
 }
 
 .book:hover, .add-button:hover {
@@ -46,28 +63,123 @@ body {
 
 .book-read {
     font-size: 13px;
-    color: #036112;
+    color: #000000;
     margin-top: 10px;
 }
 
 .add-button {
+    padding: 5px;
     background-color: rgb(0, 58, 29);
     border: 1px solid #ddd;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    width: 75px;
-    padding: 7px;
-    transition: transform 0.1s;
     color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 10px;
 }
 
 .add-form {
-    display: none;
+    display: block;
+    margin-bottom: 20px;
     max-width: 400px;
-    background-color: rgb(0, 158, 119);
+    background-color: rgb(31, 97, 56);
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
 }
+
+.add-form input {
+    display: block;
+    width: 90%;
+    margin-bottom: 10px;
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.add-form input[type="checkbox"] {
+    width: auto;
+}
+
+button:hover {
+    background-color: rgb(8, 83, 65);
+}
+
 .book-delete {
     font-size: 14px;
     color: #6e0101;
     margin-top: 8px;
+}
+
+.read-status {
+    position: relative;
+    padding-left: 30px;
+    color: white;
+    border-radius: 15px;
+    font-size: 1em;
+
+}
+.book-pages {
+    font-size: 13px;
+    color: #333;
+    margin-top: 0;
+    display: flex;
+    justify-content: flex-start;
+    gap: 5px;
+}
+
+.book-pages::before {
+    content: "Pages: ";
+    font-weight: bold;
+}
+
+
+
+.read-status::before {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 15px;
+    height: 15px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: transparent;
+    border: 2px solid #fff;
+}
+
+.read-status.read {
+    background: linear-gradient(90deg,rgb(12, 87, 47, 0.8) 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.read-status.unread {
+    background: linear-gradient(90deg,rgb(73, 11, 11, 0.8) 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.read-status.read::before {
+    background-color: #fff;
+    content: "✔";
+    font-size: 12px;
+    color: #28a745;
+}
+
+.read-status.unread::before {
+    background-color: #fff;
+    content: "✘";
+    font-size: 12px;
+    color: #dc3545;
+}
+
+footer {
+    position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    margin: 0;
+    
 }

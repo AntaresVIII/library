@@ -6,6 +6,14 @@ const createBook = document.getElementById('newBook');
 
 const myLibrary = [];
 
+function isListEmpty() {
+    if (myLibrary.length === 0) {
+        bookList.innerHTML = "No books to display. Please, add a book by clicking the button down below."
+    }
+};
+
+isListEmpty();
+
 function Book(title, author, pages, read, id) {
     this.title = title;
     this.author = author;
@@ -26,14 +34,13 @@ function deleteBook(id) {
 };
 
 Book.prototype.toggleRead = function () {
-    if (this.read) { !this.read };
-    else { this.read };
-  
-    updateList();
-  };
+    this.read = (this.read === "I have read it.") ? "Not read." : "I have read it.";
+};
+
 
 function updateList() {
     bookList.innerHTML = ""; // Prevents list from duplicating all books already being displayed.
+    isListEmpty();
 
     myLibrary.forEach(book => {
     const bookCard = document.createElement('div');
@@ -48,12 +55,22 @@ function updateList() {
     <div class="book-delete" data-uid=${book.id}>Delete</div>
     `;
 
-    Book.prototype = 
+    const readStatusButton = bookCard.querySelector(".read-status");
+
+    readStatusButton.textContent = (book.read === "I have read it.") ? "Mark as Unread" : "Mark as Read";
+    readStatusButton.classList.toggle('read', book.read === "I have read it.");
+    readStatusButton.classList.toggle('unread', book.read !== "I have read it.");
+
+    readStatusButton.addEventListener("click", () => {
+        book.toggleRead();
+        updateList();
+    });
+    
 
     const deleteButton = bookCard.querySelector(".book-delete");
 
     deleteButton.addEventListener("click", () =>
-    deleteBook(book.id)
+        deleteBook(book.id)
     );
 
     bookList.appendChild(bookCard);
@@ -72,6 +89,7 @@ addBook.addEventListener('click', () => {
         inputs.forEach(input => input.value = '');
 
     }
+
 });
 
 createBook.addEventListener('click', (event) => {
@@ -85,7 +103,7 @@ createBook.addEventListener('click', (event) => {
     
     if (title != 0 && author != 0 && pages != 0) {  // Checks whether any of the fields is left empty and prevents from posting. 
     const newBook = new Book(title, author, pages, read, id);
-    myLibrary.push(newBook);
+    myLibrary.unshift(newBook);
     updateList();
     }
     else ( alert("You need to fill up the entire form!") );
